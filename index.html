@@ -178,12 +178,8 @@ section{padding:clamp(64px,10vw,130px) 0}
 .form-status{font-size:14px;line-height:1.5;margin-top:14px;padding:12px 14px;border:1px solid var(--sand)}
 .form-status.ok{border-color:var(--caramel-soft);color:var(--ink)}
 .form-status.err{border-color:#b4533c;color:#8a3a27}
-.demo-off{border:0;padding:0;margin:0;min-width:0}
-.demo-off .field,.demo-off .consent{opacity:.5}
-.demo-off .btn{cursor:not-allowed;opacity:.55}
-.demo-off .btn:hover{background:var(--ink);border-color:var(--ink)}
-.demo-notice{margin:0 0 18px;border-color:var(--caramel-soft);font-weight:500}
 .consent a{border-bottom:1px solid var(--caramel-soft)}
+.demo-notice{margin:0 0 18px;border-color:var(--caramel-soft);font-weight:500}
 .form .fine{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55}
 @media(max-width:860px){.book-grid{grid-template-columns:1fr}}
 @media(max-width:560px){.row{grid-template-columns:1fr}}
@@ -443,19 +439,18 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
     <p class="rv" style="color:var(--muted);margin-top:18px;max-width:440px">После заявки администратор свяжется с вами, уточнит детали и подтвердит запись.</p>
   </div>
 
-  <!-- Учебная демоверсия: отправка отключена. Поля неактивны, у них нет атрибутов name,
-       action нет, сетевых запросов форма не делает. -->
+  <!-- Учебная версия с работающей формой (на время проверки задания).
+       Заявки уходят через Web3Forms. В коде только публичный ключ доступа, адрес почты хранится в Web3Forms. -->
   <form class="form rv" id="bookForm" novalidate aria-describedby="demoNotice">
-    <p class="form-status demo-notice" id="demoNotice" role="note">Учебный демонстрационный проект. Онлайн-запись временно недоступна.</p>
-    <fieldset class="demo-off" disabled>
+    <p class="form-status demo-notice" id="demoNotice" role="note">Учебный демонстрационный проект. Заявка придёт автору учебного проекта, а не в реальный салон. Не указывайте настоящие данные — используйте только тестовые.</p>
     <div class="row">
-      <label class="field"><span>Ваше имя</span><input placeholder="Как к вам обращаться"></label>
-      <label class="field"><span>Телефон</span><input type="tel" placeholder="+7"></label>
+      <label class="field"><span>Ваше имя</span><input name="name" placeholder="Как к вам обращаться" required autocomplete="given-name"></label>
+      <label class="field"><span>Телефон</span><input name="phone" type="tel" placeholder="+7" required autocomplete="tel"></label>
     </div>
     <div class="row">
-      <label class="field"><span>Порода</span><input placeholder="Например, шпиц или метис"></label>
+      <label class="field"><span>Порода</span><input name="breed" placeholder="Например, шпиц или метис"></label>
       <label class="field"><span>Размер</span>
-        <select>
+        <select name="size">
           <option value="">Выберите</option>
           <option>Маленькая</option>
           <option>Средняя</option>
@@ -464,7 +459,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
       </label>
     </div>
     <label class="field"><span>Услуга</span>
-      <select>
+      <select name="service" required>
         <option value="">Выберите услугу</option>
         <option>Стрижка</option>
         <option>Купание и сушка</option>
@@ -475,12 +470,12 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
         <option>Пока не знаю — нужна консультация</option>
       </select>
     </label>
-    <label class="field"><span>Удобное время</span><input placeholder="Например, будни после 18:00"></label>
-    <label class="field"><span>Комментарий</span><textarea rows="2" placeholder="Пожелания по стрижке и другие детали"></textarea></label>
-    <label class="consent"><input type="checkbox"><span>Согласен(на) на обработку персональных данных на условиях <a href="consent.html" target="_blank" rel="noopener">согласия</a> и <a href="privacy.html" target="_blank" rel="noopener">политики обработки данных</a></span></label>
-    <button class="btn" type="button" disabled>Онлайн-запись недоступна</button>
-    </fieldset>
-    <p class="fine">Заявка — ещё не запись. Администратор свяжется с вами, уточнит детали и подтвердит время.</p>
+    <label class="field"><span>Удобное время</span><input name="time" placeholder="Например, будни после 18:00"></label>
+    <label class="field"><span>Комментарий</span><textarea name="comment" rows="2" placeholder="Пожелания по стрижке и другие детали"></textarea></label>
+    <label class="consent"><input type="checkbox" name="consent" required><span>Согласен(на) на обработку персональных данных на условиях <a href="consent.html" target="_blank" rel="noopener">согласия</a> и <a href="privacy.html" target="_blank" rel="noopener">политики обработки данных</a></span></label>
+    <input type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+    <button class="btn" type="submit">Отправить заявку</button>
+    <p class="form-status" id="formStatus" role="status" aria-live="polite" hidden></p>
   </form>
 </div></section>
 
@@ -520,8 +515,51 @@ const nav=document.getElementById('nav');
 const onScroll=()=>nav.classList.toggle('solid',scrollY>40);
 addEventListener('scroll',onScroll,{passive:true});onScroll();
 
-// Учебная демоверсия: онлайн-запись отключена, форма ничего не отправляет.
-document.getElementById('bookForm').addEventListener('submit',e=>e.preventDefault());
+// отправка заявки на почту через Web3Forms
+// Ключ доступа публичный (по документации Web3Forms): он не раскрывает адрес почты получателя.
+const FORM_ENDPOINT='https://api.web3forms.com/submit';
+const WEB3FORMS_KEY='9820ac7f-5f0d-4a07-85c8-8c96511cab96';
+const form=document.getElementById('bookForm');
+const btn=form.querySelector('.btn');
+const statusEl=document.getElementById('formStatus');
+const btnText=btn.textContent;
+const showStatus=(text,type)=>{statusEl.textContent=text;statusEl.className='form-status '+type;statusEl.hidden=false};
+
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  if(!form.checkValidity()){form.reportValidity();return}
+  const f=form.elements;
+  const payload={
+    'Имя':f.name.value.trim(),
+    'Телефон':f.phone.value.trim(),
+    'Порода':f.breed.value.trim()||'—',
+    'Размер':f.size.value||'—',
+    'Услуга':f.service.value,
+    'Удобное время':f.time.value.trim()||'—',
+    'Комментарий':f.comment.value.trim()||'—',
+    'Согласие на обработку данных':'да',
+    access_key:WEB3FORMS_KEY,
+    subject:'Новая заявка с сайта «Лапа Люкс» (учебный проект)',
+    from_name:'Сайт «Лапа Люкс»',
+    botcheck:f.botcheck.value
+  };
+  btn.disabled=true;btn.textContent='Отправляем…';statusEl.hidden=true;
+  try{
+    const res=await fetch(FORM_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify(payload)});
+    const data=await res.json().catch(()=>({}));
+    if(res.ok&&String(data.success)==='true'){
+      btn.textContent='Заявка отправлена ✓';
+      showStatus('Заявка отправлена. Это учебный проект: запись в салон не создаётся.','ok');
+      form.reset();
+      return;
+    }
+    throw new Error(data.message||('Ошибка сервиса: '+res.status));
+  }catch(err){
+    btn.disabled=false;btn.textContent=btnText;
+    const why=err instanceof TypeError?'нет связи с сервисом отправки':err.message;
+    showStatus('Не удалось отправить заявку. Попробуйте ещё раз через минуту. Подробности: '+why,'err');
+  }
+});
 </script>
 </body>
 </html>
