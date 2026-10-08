@@ -54,7 +54,8 @@ a{color:inherit;text-decoration:none}
 .hero h1 em{font-style:italic;font-weight:400;color:var(--caramel)}
 .hero .lede{font-size:clamp(17px,1.6vw,19px);color:var(--muted);max-width:480px;margin:28px 0 36px}
 .cta{display:flex;gap:12px;flex-wrap:wrap}
-.hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--sand);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero-meta{display:flex;gap:12px 28px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--sand);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.hero-meta span:first-child{flex-basis:100%}
 @media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
 
 /* фото-рамки (ПУСТО) */
@@ -208,7 +209,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
   <nav class="links">
     <a href="#approach">Подход</a>
     <a href="#services">Услуги</a>
-    <a href="#prices">Цены</a>
+    <a href="#services">Цены</a>
     <a href="#faq">Вопросы</a>
     <a href="#how">Как записаться</a>
   </nav>
@@ -223,12 +224,12 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
     <p class="lede rv">Стрижка от&nbsp;1&nbsp;000&nbsp;₽. Стоимость согласуем до&nbsp;начала процедуры.</p>
     <div class="cta rv">
       <a href="#book" class="btn">Оставить заявку</a>
-      <a href="#prices" class="btn ghost">Смотреть цены</a>
+      <a href="#services" class="btn ghost">Смотреть цены</a>
     </div>
     <div class="hero-meta rv">
-      <span>Цена и стрижка — под вашу собаку: порода, размер, шерсть</span>
-      <span>Без спешки</span>
-      <span>Цена — заранее</span>
+      <span>Стоимость зависит от породы, размера и типа шерсти</span>
+      <span>Бережный уход</span>
+      <span>Цена известна заранее</span>
     </div>
   </div>
   <figure class="rv">
@@ -317,37 +318,6 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
   </div>
 </div></section>
 
-<!-- ================= ЦЕНЫ ================= -->
-<section id="prices" style="padding-top:0"><div class="wrap">
-  <div class="sec-head">
-    <div class="sec-no rv">03 — Цены</div>
-    <div>
-      <h2 class="rv">Ориентир по <em>стоимости</em></h2>
-      <p class="rv">Это стартовые цены. Точную сумму для вашей собаки администратор назовёт до записи.</p>
-    </div>
-  </div>
-  <div class="price-wrap">
-    <table class="ptable rv">
-      <tr><td>Стрижка</td><td>от 1 000 ₽</td></tr>
-      <tr><td>Купание и сушка</td><td>от 1 500 ₽</td></tr>
-      <tr><td>Вычёсывание, экспресс-линька</td><td>от 1 200 ₽</td></tr>
-      <tr><td>Стрижка когтей</td><td>от 400 ₽</td></tr>
-      <tr><td>Чистка ушей</td><td>от 700 ₽</td></tr>
-      <tr><td>Комплексный груминг</td><td>от 1 600 ₽</td></tr>
-    </table>
-    <aside class="note rv">
-      <h3>От чего зависит итоговая цена</h3>
-      <p>Итоговая цена зависит от породы, размера и состояния шерсти. Стоимость согласуем до начала процедуры.</p>
-      <ul>
-        <li>Порода</li>
-        <li>Размер собаки</li>
-        <li>Состояние шерсти</li>
-      </ul>
-      <p style="margin-top:18px">Учебная концепция: цены ориентировочные и не являются прайсом реального салона.</p>
-    </aside>
-  </div>
-</div></section>
-
 <!-- ================= ПРИНЦИП ================= -->
 <section class="pull rv"><div class="wrap">
   <blockquote>«Сначала договариваемся о&nbsp;результате и&nbsp;цене — <em>потом</em> берём в&nbsp;руки инструмент».</blockquote>
@@ -357,7 +327,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
 <!-- ================= ГАЛЕРЕЯ ================= -->
 <section id="gallery"><div class="wrap">
   <div class="sec-head">
-    <div class="sec-no rv">04 — Фотографии</div>
+    <div class="sec-no rv">03 — Фотографии</div>
     <div>
       <h2 class="rv">Как выглядит <em>уход</em></h2>
       <p class="rv">Фотографии реальных собак из открытых источников со свободной лицензией. Это иллюстрации, а не снимки салона «Лапа Люкс»: автор и лицензия указаны под каждым фото.</p>
@@ -393,7 +363,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
 <!-- ================= ВОПРОСЫ ================= -->
 <section id="faq" style="background:var(--beige)"><div class="wrap">
   <div class="sec-head">
-    <div class="sec-no rv">05 — Вопросы</div>
+    <div class="sec-no rv">04 — Вопросы</div>
     <div>
       <h2 class="rv">Что обычно <em>беспокоит</em> владельцев</h2>
       <p class="rv">Ответы на вопросы, которые задают перед первым визитом.</p>
@@ -402,7 +372,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
   <div class="faq rv">
     <details>
       <summary>Моя собака нервничает. Не будет ли ей слишком тяжело?</summary>
-      <div class="ans"><p>Работаем без спешки — это один из принципов салона.</p></div>
+      <div class="ans"><p>Расскажите нам заранее, как ваша собака реагирует на незнакомых людей, шум и процедуры ухода. Мы учитываем её поведение, не торопим и при необходимости делаем паузы. Если собака испытывает сильный стресс, процедуру лучше прервать, чем продолжать через силу.</p></div>
     </details>
     <details>
       <summary>Как не получить стрижку, которая мне не понравится?</summary>
@@ -418,7 +388,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
 <!-- ================= КАК ЗАПИСАТЬСЯ ================= -->
 <section id="how"><div class="wrap">
   <div class="sec-head">
-    <div class="sec-no rv">06 — Запись</div>
+    <div class="sec-no rv">05 — Запись</div>
     <div>
       <h2 class="rv">Как <em>записаться</em></h2>
       <p class="rv">Три шага от заявки до визита.</p>
@@ -490,7 +460,7 @@ footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;f
     <div>
       <h4>Разделы</h4>
       <p><a href="#services">Услуги</a></p>
-      <p><a href="#prices">Цены</a></p>
+      <p><a href="#services">Цены</a></p>
       <p><a href="#faq">Вопросы</a></p>
       <p><a href="#book">Записаться</a></p>
       <p><a href="privacy.html">Политика обработки данных</a></p>
