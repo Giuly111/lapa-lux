@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Лапа Люкс — груминг-салон для собак в Перми</title>
+<meta name="description" content="Учебная демо-концепция сайта груминг-салона для собак «Лапа Люкс», Пермь. Стрижка, купание, вычёсывание, когти, уши, комплексный груминг.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --milk:#f7f3ec;      /* фон */
+  --beige:#ebe2d4;     /* вторичный фон */
+  --sand:#ddd0bd;      /* линии */
+  --ink:#262422;       /* графит, текст */
+  --graphite:#3a3734;  /* тёмные плашки */
+  --muted:#6b6258;     /* второстепенный текст */
+  --caramel:#94663c;   /* приглушённый карамельный, акцент */
+  --caramel-soft:#c49a72;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--milk);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+.serif{font-family:'Fraunces',Georgia,serif}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.rv{opacity:0;transform:translateY(18px);transition:opacity .9s,transform .9s}
+.rv.in{opacity:1;transform:none}
+.empty{display:inline-block;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--caramel);border:1px solid var(--caramel-soft);padding:2px 8px;vertical-align:middle}
+
+/* nav */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;transition:background .4s,border-color .4s;border-bottom:1px solid transparent}
+.nav.solid{background:rgba(247,243,236,.94);backdrop-filter:blur(8px);border-color:var(--sand)}
+.nav .in-nav{display:flex;align-items:center;justify-content:space-between;height:72px;gap:20px}
+.logo{font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-.01em;white-space:nowrap}
+.logo em{font-style:italic;font-weight:400;color:var(--caramel)}
+.links{display:flex;gap:28px;font-size:14px}
+.links a{color:var(--muted);transition:color .3s}
+.links a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ink);color:var(--milk);font-size:14px;font-weight:500;letter-spacing:.02em;padding:14px 26px;border:1px solid var(--ink);cursor:pointer;transition:background .3s,color .3s,border-color .3s;font-family:'Inter',sans-serif}
+.btn:hover{background:var(--caramel);border-color:var(--caramel)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.btn.ghost:hover{background:var(--ink);color:var(--milk);border-color:var(--ink)}
+.nav .btn{padding:11px 20px}
+@media(max-width:900px){.links{display:none}}
+
+/* hero */
+.hero{padding:clamp(110px,14vw,170px) 0 clamp(56px,8vw,100px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,72px);align-items:end}
+.kicker{font-family:'Fraunces',serif;font-style:italic;color:var(--caramel);font-size:18px;margin-bottom:22px}
+.hero h1{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(44px,7.4vw,104px);line-height:.98;letter-spacing:-.03em}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--caramel)}
+.hero .lede{font-size:clamp(17px,1.6vw,19px);color:var(--muted);max-width:480px;margin:28px 0 36px}
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+.hero-meta{display:flex;gap:28px;flex-wrap:wrap;margin-top:44px;padding-top:22px;border-top:1px solid var(--sand);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}}
+
+/* фото-рамки (ПУСТО) */
+.ph{position:relative;background:
+  radial-gradient(120% 90% at 30% 20%,#efe6d8 0%,#e3d6c3 55%,#d6c6af 100%);
+  overflow:hidden;display:flex;align-items:flex-end}
+.ph::before{content:'';position:absolute;inset:18px;border:1px solid rgba(38,36,34,.14)}
+.ph .lbl{position:relative;padding:28px;width:100%}
+.ph .lbl b{display:block;font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(18px,2vw,24px);line-height:1.2;color:var(--graphite);margin:10px 0 6px}
+.ph .lbl small{font-size:12px;color:var(--muted);letter-spacing:.02em}
+.ph-hero{aspect-ratio:4/5}
+figure figcaption{font-size:12px;color:var(--muted);margin-top:10px;letter-spacing:.02em}
+figure figcaption a{border-bottom:1px solid var(--sand)}
+figure figcaption a:hover{color:var(--caramel)}
+/* фото */
+.photo{position:relative;overflow:hidden;background:var(--beige)}
+.photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.9)}
+.photo::after{content:'';position:absolute;inset:18px;border:1px solid rgba(247,243,236,.35);pointer-events:none}
+.photo.ph-hero{aspect-ratio:4/5}
+.photo.big{aspect-ratio:4/5}
+.photo.wide{aspect-ratio:4/3}
+figure figcaption .what{display:block;font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:var(--ink);margin-bottom:2px;letter-spacing:0}
+
+/* секции */
+section{padding:clamp(64px,10vw,130px) 0}
+.sec-head{display:grid;grid-template-columns:220px 1fr;gap:clamp(20px,4vw,56px);margin-bottom:clamp(36px,5vw,64px)}
+.sec-no{font-family:'Fraunces',serif;font-style:italic;color:var(--caramel);font-size:16px;padding-top:12px;border-top:1px solid var(--ink)}
+.sec-head h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(34px,5vw,64px);line-height:1.02;letter-spacing:-.025em}
+.sec-head h2 em{font-style:italic;font-weight:400;color:var(--caramel)}
+.sec-head p{color:var(--muted);max-width:560px;margin-top:18px;font-size:17px}
+@media(max-width:760px){.sec-head{grid-template-columns:1fr;gap:14px}.sec-no{padding-top:10px}}
+
+/* подход */
+.approach{background:var(--beige)}
+.principles{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--ink)}
+.pr{padding:34px 34px 10px 0;border-right:1px solid var(--sand)}
+.pr+.pr{padding-left:34px}
+.pr:last-child{border-right:none}
+.pr .n{font-family:'Fraunces',serif;font-size:56px;font-weight:400;line-height:1;color:var(--caramel)}
+.pr h3{font-family:'Fraunces',serif;font-weight:500;font-size:26px;line-height:1.15;margin:20px 0 12px}
+.pr p{color:var(--muted);font-size:15.5px}
+@media(max-width:860px){.principles{grid-template-columns:1fr}.pr,.pr+.pr{padding:30px 0;border-right:none;border-bottom:1px solid var(--sand)}.pr:last-child{border-bottom:none}}
+
+/* услуги */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--sand);border:1px solid var(--sand)}
+.svc{background:var(--milk);padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;min-height:280px;transition:background .4s}
+.svc:hover{background:#fbf8f3}
+.svc .no{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--caramel)}
+.svc h3{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,2.4vw,30px);line-height:1.1;margin:14px 0 12px;letter-spacing:-.01em}
+.svc p{font-size:15px;color:var(--muted);flex:1}
+.svc .price{margin-top:24px;padding-top:16px;border-top:1px solid var(--sand);display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.svc .price span{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.svc .price b{font-family:'Fraunces',serif;font-weight:500;font-size:24px;white-space:nowrap}
+@media(max-width:960px){.services{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.services{grid-template-columns:1fr}.svc{min-height:0}}
+
+/* прайс */
+.price-wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
+.price-wrap>*{min-width:0}
+.ptable{width:100%;border-collapse:collapse}
+.ptable td{padding:18px 0;border-bottom:1px solid var(--sand);vertical-align:baseline}
+.ptable tr:first-child td{border-top:1px solid var(--ink)}
+.ptable td:first-child{font-family:'Fraunces',serif;font-size:clamp(19px,2vw,23px)}
+.ptable td:last-child{text-align:right;white-space:nowrap;font-weight:500;padding-left:16px}
+.note{background:var(--graphite);color:var(--milk);padding:clamp(28px,4vw,44px)}
+.note h3{font-family:'Fraunces',serif;font-weight:400;font-style:italic;font-size:clamp(24px,2.6vw,32px);line-height:1.15;margin-bottom:18px}
+.note p{color:#d9d1c5;font-size:15.5px;margin-bottom:12px}
+.note ul{list-style:none;margin:18px 0 0;border-top:1px solid rgba(247,243,236,.18)}
+.note li{padding:12px 0;border-bottom:1px solid rgba(247,243,236,.18);font-size:15px;color:#ece5da}
+@media(max-width:860px){.price-wrap{grid-template-columns:1fr}}
+
+/* цитата-принцип */
+.pull{text-align:center;padding:clamp(70px,10vw,130px) 0;border-top:1px solid var(--sand);border-bottom:1px solid var(--sand)}
+.pull blockquote{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(28px,4.4vw,56px);line-height:1.12;letter-spacing:-.02em;max-width:980px;margin:0 auto}
+.pull blockquote em{color:var(--caramel)}
+.pull cite{display:block;margin-top:26px;font-style:normal;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+
+/* галерея */
+.gallery{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(14px,2vw,24px)}
+.gallery .col{display:grid;gap:clamp(14px,2vw,24px)}
+.gallery .big{aspect-ratio:4/5}
+.gallery .wide{aspect-ratio:4/3}
+@media(max-width:760px){.gallery{grid-template-columns:1fr}}
+
+/* вопросы */
+.faq{border-top:1px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--sand)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-family:'Fraunces',serif;font-size:clamp(20px,2.2vw,26px);line-height:1.25}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:'+';font-family:'Inter',sans-serif;font-weight:400;font-size:26px;color:var(--caramel);transition:transform .3s;flex-shrink:0}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq .ans{padding:0 0 26px;max-width:720px;color:var(--muted);font-size:16px}
+.faq .ans p+p{margin-top:10px}
+
+/* шаги */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,40px);counter-reset:s}
+.step{border-top:1px solid var(--ink);padding-top:24px}
+.step::before{counter-increment:s;content:'0' counter(s);font-family:'Fraunces',serif;font-style:italic;font-size:16px;color:var(--caramel)}
+.step h3{font-family:'Fraunces',serif;font-weight:500;font-size:24px;line-height:1.15;margin:14px 0 10px}
+.step p{color:var(--muted);font-size:15.5px}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* запись */
+.book{background:var(--beige)}
+.book-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:start}
+.book-grid>*{min-width:0}
+.contacts{margin-top:34px;border-top:1px solid var(--ink)}
+.contacts div{display:flex;justify-content:space-between;gap:16px;padding:15px 0;border-bottom:1px solid var(--sand);font-size:15px}
+.contacts span{color:var(--muted)}
+.form{background:var(--milk);padding:clamp(24px,4vw,46px);border:1px solid var(--sand)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:0 24px}
+.field{display:block;border-bottom:1px solid var(--sand);padding:14px 0 10px;margin-bottom:6px}
+.field>span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:none;background:transparent;outline:none;font-family:'Fraunces',serif;font-size:19px;color:var(--ink);resize:vertical;border-radius:0;-webkit-appearance:none;appearance:none}
+.field select{cursor:pointer;background-image:linear-gradient(45deg,transparent 50%,var(--caramel) 50%),linear-gradient(135deg,var(--caramel) 50%,transparent 50%);background-position:calc(100% - 12px) 55%,calc(100% - 6px) 55%;background-size:6px 6px;background-repeat:no-repeat;padding-right:28px}
+.field input::placeholder,.field textarea::placeholder{color:#b5a891}
+.field:focus-within{border-color:var(--caramel)}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:var(--muted);margin:20px 0 4px;line-height:1.5}
+.consent input{margin-top:3px;accent-color:var(--caramel);flex-shrink:0;width:16px;height:16px}
+.form .btn{width:100%;margin-top:22px;padding:18px}
+.form-status{font-size:14px;line-height:1.5;margin-top:14px;padding:12px 14px;border:1px solid var(--sand)}
+.form-status.ok{border-color:var(--caramel-soft);color:var(--ink)}
+.form-status.err{border-color:#b4533c;color:#8a3a27}
+.demo-off{border:0;padding:0;margin:0;min-width:0}
+.demo-off .field,.demo-off .consent{opacity:.5}
+.demo-off .btn{cursor:not-allowed;opacity:.55}
+.demo-off .btn:hover{background:var(--ink);border-color:var(--ink)}
+.demo-notice{margin:0 0 18px;border-color:var(--caramel-soft);font-weight:500}
+.consent a{border-bottom:1px solid var(--caramel-soft)}
+.form .fine{font-size:12.5px;color:var(--muted);margin-top:14px;line-height:1.55}
+@media(max-width:860px){.book-grid{grid-template-columns:1fr}}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+
+/* footer */
+footer{background:var(--ink);color:#cfc7ba;padding:clamp(48px,6vw,72px) 0 90px;font-size:14px}
+.foot{display:grid;grid-template-columns:1.2fr 1fr;gap:36px}
+.foot .logo{color:var(--milk);font-size:26px;margin-bottom:12px;display:inline-block}
+.foot h4{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#8f877b;font-weight:600;margin-bottom:14px}
+.foot p{margin-bottom:8px}
+.foot a:hover{color:var(--milk)}
+.foot .empty{color:var(--caramel-soft);border-color:#6b5a48}
+.legal{margin-top:44px;padding-top:22px;border-top:1px solid #3d3a37;font-size:12.5px;color:#8f877b;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:760px){.foot{grid-template-columns:1fr}}
+
+.demo-tag{position:fixed;bottom:16px;left:16px;z-index:60;background:var(--ink);color:var(--milk);font-size:11px;letter-spacing:.1em;padding:10px 16px;border:1px solid #4a4642}
+.demo-tag:hover{background:var(--caramel)}
+@media(max-width:600px){.demo-tag{font-size:9.5px;padding:6px 10px;bottom:10px;left:10px;opacity:.9}}
+</style>
+</head>
+<body>
+
+<!-- ================= NAV ================= -->
+<header class="nav" id="nav"><div class="wrap in-nav">
+  <a href="#top" class="logo">Лапа <em>Люкс</em></a>
+  <nav class="links">
+    <a href="#approach">Подход</a>
+    <a href="#services">Услуги</a>
+    <a href="#prices">Цены</a>
+    <a href="#faq">Вопросы</a>
+    <a href="#how">Как записаться</a>
+  </nav>
+  <a href="#book" class="btn">Записаться</a>
+</div></header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <div class="kicker rv">Груминг-салон для собак · Пермь</div>
+    <h1 class="rv">Груминг собак <em>в&nbsp;Перми</em></h1>
+    <p class="lede rv">Стрижка от&nbsp;1&nbsp;000&nbsp;₽. Стоимость согласуем до&nbsp;начала процедуры.</p>
+    <div class="cta rv">
+      <a href="#book" class="btn">Оставить заявку</a>
+      <a href="#prices" class="btn ghost">Смотреть цены</a>
+    </div>
+    <div class="hero-meta rv">
+      <span>Цена и стрижка — под вашу собаку: порода, размер, шерсть</span>
+      <span>Без спешки</span>
+      <span>Цена — заранее</span>
+    </div>
+  </div>
+  <figure class="rv">
+    <div class="photo ph-hero"><picture>
+      <source srcset="img/hero.webp" type="image/webp">
+      <img src="img/hero.jpg" width="1280" height="1600" alt="Лхаса апсо с длинной расчёсанной шерстью и резинкой на чёлке, студийный портрет" fetchpriority="high">
+    </picture></div>
+    <figcaption>Фото: <a href="https://commons.wikimedia.org/wiki/File:Lhasa_Apso_(2772603427).jpg" target="_blank" rel="noopener">«Lhasa Apso»</a>, Asra Valorshon, <a href="https://creativecommons.org/licenses/by/2.0/deed.ru" target="_blank" rel="noopener">CC BY 2.0</a> · обрезано</figcaption>
+  </figure>
+</div></section>
+
+<!-- ================= ПОДХОД ================= -->
+<section class="approach" id="approach"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">01 — Подход</div>
+    <div>
+      <h2 class="rv">Три правила, <em>на&nbsp;которых</em> держится визит</h2>
+      <p class="rv">Для собаки груминг — новые запахи, звуки и прикосновения. Для вас важно понимать, каким будет результат и сколько это будет стоить. Поэтому до начала работы мы называем цену и обсуждаем с вами стрижку.</p>
+    </div>
+  </div>
+  <div class="principles">
+    <div class="pr rv">
+      <div class="n">01</div>
+      <h3>Цена и стрижка — под вашу собаку: порода, размер, шерсть</h3>
+      <p>Учитываем породу, размер и состояние шерсти. До начала работы обсуждаем с вами, какой результат вы хотите получить.</p>
+    </div>
+    <div class="pr rv">
+      <div class="n">02</div>
+      <h3>Бережно и без спешки</h3>
+      <p>Не торопим собаку во время процедуры.</p>
+    </div>
+    <div class="pr rv">
+      <div class="n">03</div>
+      <h3>Стоимость — заранее</h3>
+      <p>Итоговую цену согласуем с вами до начала процедуры.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= УСЛУГИ ================= -->
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">02 — Услуги</div>
+    <div>
+      <h2 class="rv">Что мы <em>делаем</em></h2>
+      <p class="rv">Шесть направлений ухода. Подходящий набор процедур подскажем, когда администратор свяжется с вами по заявке.</p>
+    </div>
+  </div>
+  <div class="services">
+    <article class="svc rv">
+      <div class="no">01</div>
+      <h3>Стрижка собак</h3>
+      <p>Форму и длину стрижки обсуждаем с вами до начала работы.</p>
+      <div class="price"><span>Стоимость</span><b>от 1 000 ₽</b></div>
+    </article>
+    <article class="svc rv">
+      <div class="no">02</div>
+      <h3>Купание и сушка</h3>
+      <p>Мытьё и сушка шерсти.</p>
+      <div class="price"><span>Стоимость</span><b>от 1 500 ₽</b></div>
+    </article>
+    <article class="svc rv">
+      <div class="no">03</div>
+      <h3>Вычёсывание и экспресс-линька</h3>
+      <p>Вычёсывание отмершей шерсти и подшёрстка, в том числе в сезон линьки.</p>
+      <div class="price"><span>Стоимость</span><b>от 1 200 ₽</b></div>
+    </article>
+    <article class="svc rv">
+      <div class="no">04</div>
+      <h3>Стрижка когтей</h3>
+      <p>Отдельно или вместе с другой услугой.</p>
+      <div class="price"><span>Стоимость</span><b>от 400 ₽</b></div>
+    </article>
+    <article class="svc rv">
+      <div class="no">05</div>
+      <h3>Чистка ушей</h3>
+      <p>Отдельно или вместе с другими процедурами.</p>
+      <div class="price"><span>Стоимость</span><b>от 700 ₽</b></div>
+    </article>
+    <article class="svc rv">
+      <div class="no">06</div>
+      <h3>Комплексный груминг</h3>
+      <p>Несколько процедур за один визит.</p>
+      <div class="price"><span>Стоимость</span><b>от 1 600 ₽</b></div>
+    </article>
+  </div>
+</div></section>
+
+<!-- ================= ЦЕНЫ ================= -->
+<section id="prices" style="padding-top:0"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">03 — Цены</div>
+    <div>
+      <h2 class="rv">Ориентир по <em>стоимости</em></h2>
+      <p class="rv">Это стартовые цены. Точную сумму для вашей собаки администратор назовёт до записи.</p>
+    </div>
+  </div>
+  <div class="price-wrap">
+    <table class="ptable rv">
+      <tr><td>Стрижка</td><td>от 1 000 ₽</td></tr>
+      <tr><td>Купание и сушка</td><td>от 1 500 ₽</td></tr>
+      <tr><td>Вычёсывание, экспресс-линька</td><td>от 1 200 ₽</td></tr>
+      <tr><td>Стрижка когтей</td><td>от 400 ₽</td></tr>
+      <tr><td>Чистка ушей</td><td>от 700 ₽</td></tr>
+      <tr><td>Комплексный груминг</td><td>от 1 600 ₽</td></tr>
+    </table>
+    <aside class="note rv">
+      <h3>От чего зависит итоговая цена</h3>
+      <p>Итоговая цена зависит от породы, размера и состояния шерсти. Стоимость согласуем до начала процедуры.</p>
+      <ul>
+        <li>Порода</li>
+        <li>Размер собаки</li>
+        <li>Состояние шерсти</li>
+      </ul>
+      <p style="margin-top:18px">Учебная концепция: цены ориентировочные и не являются прайсом реального салона.</p>
+    </aside>
+  </div>
+</div></section>
+
+<!-- ================= ПРИНЦИП ================= -->
+<section class="pull rv"><div class="wrap">
+  <blockquote>«Сначала договариваемся о&nbsp;результате и&nbsp;цене — <em>потом</em> берём в&nbsp;руки инструмент».</blockquote>
+  <cite>Принцип салона · учебная концепция</cite>
+</div></section>
+
+<!-- ================= ГАЛЕРЕЯ ================= -->
+<section id="gallery"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">04 — Фотографии</div>
+    <div>
+      <h2 class="rv">Как выглядит <em>уход</em></h2>
+      <p class="rv">Фотографии реальных собак из открытых источников со свободной лицензией. Это иллюстрации, а не снимки салона «Лапа Люкс»: автор и лицензия указаны под каждым фото.</p>
+    </div>
+  </div>
+  <div class="gallery">
+    <figure class="rv">
+      <div class="photo big"><picture>
+        <source srcset="img/gallery-haircut.webp" type="image/webp">
+        <img src="img/gallery-haircut.jpg" width="1120" height="1400" alt="Йоркширский терьер после стрижки сидит на деревянном полу" loading="lazy">
+      </picture></div>
+      <figcaption><span class="what">После стрижки</span>Фото: <a href="https://commons.wikimedia.org/wiki/File:Yorkshire-Terrier-Fresh-Haircut.jpg" target="_blank" rel="noopener">«Yorkshire Terrier Fresh Haircut»</a>, Zakattakk, <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ru" target="_blank" rel="noopener">CC BY-SA 4.0</a> · обрезано</figcaption>
+    </figure>
+    <div class="col">
+      <figure class="rv">
+        <div class="photo wide"><picture>
+          <source srcset="img/gallery-brushing.webp" type="image/webp">
+          <img src="img/gallery-brushing.jpg" width="1400" height="1050" alt="Мытьё овчарки: руки с резиновой щёткой на мокрой шерсти" loading="lazy">
+        </picture></div>
+        <figcaption><span class="what">Купание и вычёсывание</span>Фото: <a href="https://commons.wikimedia.org/wiki/File:MWD_Spa_Day_(9568307).jpg" target="_blank" rel="noopener">«MWD Spa Day»</a>, Sgt. 1st Class Tanisha Karn / U.S. Army, общественное достояние · обрезано</figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="photo wide"><picture>
+          <source srcset="img/gallery-salon.webp" type="image/webp">
+          <img src="img/gallery-salon.jpg" width="1400" height="1050" alt="Сушка чихуахуа феном на груминг-столе у панорамного окна" loading="lazy">
+        </picture></div>
+        <figcaption><span class="what">Сушка на груминг-столе</span>Фото: <a href="https://commons.wikimedia.org/wiki/File:Dog_Stylin%27_(3406880422).jpg" target="_blank" rel="noopener">«Dog Stylin'»</a>, japanese_craft_construction, <a href="https://creativecommons.org/licenses/by/2.0/deed.ru" target="_blank" rel="noopener">CC BY 2.0</a> · обрезано</figcaption>
+      </figure>
+    </div>
+  </div>
+</div></section>
+
+<!-- ================= ВОПРОСЫ ================= -->
+<section id="faq" style="background:var(--beige)"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">05 — Вопросы</div>
+    <div>
+      <h2 class="rv">Что обычно <em>беспокоит</em> владельцев</h2>
+      <p class="rv">Ответы на вопросы, которые задают перед первым визитом.</p>
+    </div>
+  </div>
+  <div class="faq rv">
+    <details>
+      <summary>Моя собака нервничает. Не будет ли ей слишком тяжело?</summary>
+      <div class="ans"><p>Работаем без спешки — это один из принципов салона.</p></div>
+    </details>
+    <details>
+      <summary>Как не получить стрижку, которая мне не понравится?</summary>
+      <div class="ans"><p>До начала работы обсуждаем с вами форму и длину стрижки.</p></div>
+    </details>
+    <details>
+      <summary>Не будет ли неожиданных доплат?</summary>
+      <div class="ans"><p>Стоимость согласуем с вами до начала процедуры.</p></div>
+    </details>
+  </div>
+</div></section>
+
+<!-- ================= КАК ЗАПИСАТЬСЯ ================= -->
+<section id="how"><div class="wrap">
+  <div class="sec-head">
+    <div class="sec-no rv">06 — Запись</div>
+    <div>
+      <h2 class="rv">Как <em>записаться</em></h2>
+      <p class="rv">Три шага от заявки до визита.</p>
+    </div>
+  </div>
+  <div class="steps">
+    <div class="step rv"><h3>Оставьте заявку</h3><p>Заполните форму: имя, телефон, порода, размер, услуга и удобное время.</p></div>
+    <div class="step rv"><h3>Администратор свяжется с вами</h3><p>Уточнит детали: породу, размер, состояние шерсти и ваши пожелания. Назовёт стоимость.</p></div>
+    <div class="step rv"><h3>Подтверждение записи</h3><p>Согласуем дату и время. Запись считается подтверждённой после разговора с администратором.</p></div>
+  </div>
+</div></section>
+
+<!-- ================= ФОРМА ================= -->
+<section class="book" id="book"><div class="wrap book-grid">
+  <div>
+    <div class="kicker rv">Запись в салон</div>
+    <h2 class="serif rv" style="font-weight:500;font-size:clamp(34px,5vw,60px);line-height:1.02;letter-spacing:-.025em">Расскажите о&nbsp;вашей <em style="color:var(--caramel);font-weight:400">собаке</em></h2>
+    <p class="rv" style="color:var(--muted);margin-top:18px;max-width:440px">После заявки администратор свяжется с вами, уточнит детали и подтвердит запись.</p>
+  </div>
+
+  <!-- Учебная демоверсия: отправка отключена. Поля неактивны, у них нет атрибутов name,
+       action нет, сетевых запросов форма не делает. -->
+  <form class="form rv" id="bookForm" novalidate aria-describedby="demoNotice">
+    <p class="form-status demo-notice" id="demoNotice" role="note">Учебный демонстрационный проект. Онлайн-запись временно недоступна.</p>
+    <fieldset class="demo-off" disabled>
+    <div class="row">
+      <label class="field"><span>Ваше имя</span><input placeholder="Как к вам обращаться"></label>
+      <label class="field"><span>Телефон</span><input type="tel" placeholder="+7"></label>
+    </div>
+    <div class="row">
+      <label class="field"><span>Порода</span><input placeholder="Например, шпиц или метис"></label>
+      <label class="field"><span>Размер</span>
+        <select>
+          <option value="">Выберите</option>
+          <option>Маленькая</option>
+          <option>Средняя</option>
+          <option>Крупная</option>
+        </select>
+      </label>
+    </div>
+    <label class="field"><span>Услуга</span>
+      <select>
+        <option value="">Выберите услугу</option>
+        <option>Стрижка</option>
+        <option>Купание и сушка</option>
+        <option>Вычёсывание, экспресс-линька</option>
+        <option>Стрижка когтей</option>
+        <option>Чистка ушей</option>
+        <option>Комплексный груминг</option>
+        <option>Пока не знаю — нужна консультация</option>
+      </select>
+    </label>
+    <label class="field"><span>Удобное время</span><input placeholder="Например, будни после 18:00"></label>
+    <label class="field"><span>Комментарий</span><textarea rows="2" placeholder="Пожелания по стрижке и другие детали"></textarea></label>
+    <label class="consent"><input type="checkbox"><span>Согласен(на) на обработку персональных данных на условиях <a href="consent.html" target="_blank" rel="noopener">согласия</a> и <a href="privacy.html" target="_blank" rel="noopener">политики обработки данных</a></span></label>
+    <button class="btn" type="button" disabled>Онлайн-запись недоступна</button>
+    </fieldset>
+    <p class="fine">Заявка — ещё не запись. Администратор свяжется с вами, уточнит детали и подтвердит время.</p>
+  </form>
+</div></section>
+
+<!-- ================= FOOTER ================= -->
+<footer><div class="wrap">
+  <div class="foot">
+    <div>
+      <a href="#top" class="logo">Лапа <em>Люкс</em></a>
+      <p>Груминг-салон для собак, Пермь.</p>
+      <p style="color:#8f877b">Учебный проект курса «Claude Мастер», модуль 3.</p>
+    </div>
+    <div>
+      <h4>Разделы</h4>
+      <p><a href="#services">Услуги</a></p>
+      <p><a href="#prices">Цены</a></p>
+      <p><a href="#faq">Вопросы</a></p>
+      <p><a href="#book">Записаться</a></p>
+      <p><a href="privacy.html">Политика обработки данных</a></p>
+      <p><a href="consent.html">Согласие на обработку данных</a></p>
+    </div>
+  </div>
+  <div class="legal">
+    <span>«Лапа Люкс» — вымышленный салон, учебный проект.</span>
+    <span>Цены ориентировочные, не являются публичной офертой. Фото: Wikimedia Commons, авторы и лицензии указаны под каждым изображением.</span>
+  </div>
+</div></footer>
+
+<a class="demo-tag" href="#book">✦ Учебная демо-концепция</a>
+
+<script>
+// reveal on scroll
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+document.querySelectorAll('.rv').forEach(el=>io.observe(el));
+
+// nav solid при скролле
+const nav=document.getElementById('nav');
+const onScroll=()=>nav.classList.toggle('solid',scrollY>40);
+addEventListener('scroll',onScroll,{passive:true});onScroll();
+
+// Учебная демоверсия: онлайн-запись отключена, форма ничего не отправляет.
+document.getElementById('bookForm').addEventListener('submit',e=>e.preventDefault());
+</script>
+</body>
+</html>
